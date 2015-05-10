@@ -3,7 +3,8 @@
 # Recipe:: worker
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
-tag('worker')
+tag('stories-worker')
+
 app = chef_vault_item('apps', node['app']['data_bag'])
 
 include_recipe 'chef-vault'
