@@ -1,0 +1,11 @@
+production:
+  adapter: postgresql
+  <% if @app['db'] %>
+  host: <%= @app['db']['host'] %>
+  port: <%= @app['db']['port'] %>
+  username: <%= @app['db']['username'] %>
+  password: <%= @app['db']['password'] %>
+  database: <%= @app['db']['name'] %>
+  pool: <%= @app['db']['pool'] %>
+  <% end %>
+  timeout: 5000

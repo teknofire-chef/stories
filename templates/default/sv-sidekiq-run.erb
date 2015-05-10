@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd <%= node.run_state['app_install_path'] %>/current
+export PATH=$PATH:<%= node.run_state['app_install_path'] %>/current/bin
+
+exec 2>&1
+exec chpst -u webdev -e /etc/sv/sidekiq/env \
+  bundle exec sidekiq -c 5 -t 30 -e production

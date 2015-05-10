@@ -1,0 +1,21 @@
+---
+driver:
+  name: vagrant
+  network:
+    - ["forwarded_port", { guest: 80, host: 8000 }]
+
+provisioner:
+  name: chef_zero
+  data_bags_path: ~/chef/tekno/data_bags/
+
+platforms:
+  - name: ubuntu-14.04
+
+suites:
+  - name: default
+    run_list:
+      - recipe[s2stories::database]
+      - recipe[s2stories::web]
+      - recipe[s2stories::redis]
+      - recipe[s2stories::worker]
+    attributes:

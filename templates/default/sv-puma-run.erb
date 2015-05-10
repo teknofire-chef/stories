@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cd <%= node.run_state['app_install_path'] %>/current
+
+
+exec 2>&1
+exec chpst -u webdev  -e /etc/sv/puma/env \
+  bundle exec puma -C config/puma.rb
