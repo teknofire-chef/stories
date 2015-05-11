@@ -63,7 +63,7 @@ deploy_revision app['install_path'] do
       cwd release_path
       user 'webdev'
       group 'webdev'
-      command "bundle install --deployment --path=#{app['install_path']}/shared/bundle"
+      command "bundle install --deployment --without \"development test\" --path=#{app['install_path']}/shared/bundle"
       # environment({"BUNDLE_BUILD__PG" => "--with-pg_config=/usr/pgsql-#{node['postgresql']['version']}/bin/pg_config"})
     end
   end
