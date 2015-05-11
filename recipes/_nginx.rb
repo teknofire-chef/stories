@@ -1,5 +1,6 @@
 node.override['nginx']['default_site_enabled'] = false
 node.override['nginx']['repo_source'] = 'nginx'
+node.override['nginx']['init_style'] = 'init'
 # node.override['nginx']['source']['modules'] = ['http_ssl_module.rb']
 include_recipe 'nginx'
 
@@ -17,13 +18,13 @@ end
 
 app = chef_vault_item('apps', node['app']['data_bag'])
 
-ruby_block 'move_nginx_confs' do
-  block do
-    if File.exists? '/etc/nginx/conf.d'
-      FileUtils::rm_rf '/etc/nginx/conf.d'
-    end
-  end
-end
+# ruby_block 'move_nginx_confs' do
+#   block do
+#     if File.exists? '/etc/nginx/conf.d'
+#       FileUtils::rm_rf '/etc/nginx/conf.d'
+#     end
+#   end
+# end
 
 template "/etc/nginx/sites-available/#{node['app']['name']}" do
   source 'nginx_site.erb'
@@ -37,7 +38,7 @@ template "/etc/nginx/sites-available/#{node['app']['name']}" do
     ssl_cert: "ssl/certs/#{node['app']['name']}.pem",
     ssl_key: "ssl/private/#{node['app']['name']}.key"
   })
-  notifies :restart, "service[nginx]", :delayed
+  # notifies :restart, "service[nginx]", :delayed
 end
 
 nginx_site node['app']['name']

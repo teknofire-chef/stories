@@ -4,7 +4,7 @@ maintainer_email 'will@teknofire.net'
 license          'all_rights'
 description      'Installs/Configures s2stories'
 long_description 'Installs/Configures s2stories'
-version          '0.1.4'
+version          '0.1.5'
 
 depends 'chef-vault'
 depends 'postgresql'
