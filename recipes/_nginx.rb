@@ -31,6 +31,7 @@ template "/etc/nginx/sites-available/#{node['app']['name']}" do
     install_path: "#{app['install_path']}/current",
     name: node['app']['name'],
     environment: node['app']['environment'],
+    serve_static_assets: false,
     port: node['app']['puma_port'],
     enable_ssl: node['app'].attribute?('ssl_data_bag'),
     ssl_cert: "ssl/certs/#{node['app']['name']}.pem",

@@ -1,5 +1,7 @@
 app = chef_vault_item('apps', node['app']['data_bag'])
 
+package 'imagemagick'
+
 ['', 'shared', 'shared/bundle'].each do |subdir|
   Chef::Log.info "Attempting to create #{File.join(app['install_path'], subdir)}"
   directory File.join(app['install_path'], subdir) do

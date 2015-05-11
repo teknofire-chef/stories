@@ -33,7 +33,7 @@ server {
     proxy_pass http://<%= @name %>_proxy;
   }
 
-  <% if @environment == 'production' %>
+  <% if @serve_static_assets %>
   location ~ ^/(assets)/ {
         root <%= @install_path %>/public;
         gzip_static on;
