@@ -13,7 +13,11 @@ package 'imagemagick'
   end
 end
 
-database_host = search(:node, 'tags:stories-database', filter_result: {'ip' => ['ipaddress']})
+
+database_host = ''
+unless Chef::Config[:solo]
+  database_host = search(:node, 'tags:stories-database', filter_result: {'ip' => ['ipaddress']})
+end
 database_host  = [{'ip' => node['ipaddress']}] if database_host.empty?
 
 template "#{app['install_path']}/shared/.env.production" do

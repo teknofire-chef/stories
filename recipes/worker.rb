@@ -21,7 +21,7 @@ runit_service "sidekiq" do
   default_logger true
   env({
     "RAILS_ENV" => 'production',
-    "PROCESSING_NUMBER_OF_CPUS" => "#{node['cpu']['total']}"
+    "PROCESSING_NUMBER_OF_CPUS" => node['cpu']['total']
     })
 
   subscribes :restart, "deploy_revision[#{app['install_path']}]", :delayed
